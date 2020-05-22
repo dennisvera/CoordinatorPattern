@@ -12,6 +12,8 @@ class SettingsViewController: UIViewController, StoryBoardable {
     
     // MARK: - Properties
     
+    var didDissmiss: (() -> Void)?
+    
     @IBOutlet var fontSizeSlider: UISlider! {
         didSet {
             // Configure Font Size Slider
@@ -37,8 +39,8 @@ class SettingsViewController: UIViewController, StoryBoardable {
     // MARK: - Actions
 
     @IBAction func dismiss(_ sender: Any) {
-        // Dismiss View Controller
-        dismiss(animated: true)
+        // Invoke Handler
+       didDissmiss?()
     }
     
     @IBAction func fontSizeDidChange(_ sender: Any) {

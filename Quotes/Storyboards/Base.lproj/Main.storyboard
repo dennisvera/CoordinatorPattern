@@ -53,7 +53,6 @@
                                         <connections>
                                             <outlet property="authorLabel" destination="5MK-Tc-39H" id="vNE-v6-S7g"/>
                                             <outlet property="contentLabel" destination="Hk8-OO-5FQ" id="2EK-l6-MBS"/>
-                                            <segue destination="sUD-Oo-uRg" kind="show" identifier="Quote" id="wPY-Tq-PoM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -86,13 +85,13 @@
         <!--Quote View Controller-->
         <scene sceneID="Hbu-m2-W8h">
             <objects>
-                <viewController id="sUD-Oo-uRg" customClass="QuoteViewController" customModule="Quotes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuoteViewController" id="sUD-Oo-uRg" customClass="QuoteViewController" customModule="Quotes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DpR-pe-aCl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-XU-6lk">
-                                <rect key="frame" x="20" y="394.5" width="374" height="53.5"/>
+                                <rect key="frame" x="20" y="421.5" width="374" height="53.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4f-6g-CWd">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>

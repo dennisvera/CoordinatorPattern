@@ -32,7 +32,43 @@ class AppCoordinator {
         // Initialize Quotes View Controller
         let quotesViewController = QuotesViewController.instantiate()
         
+         // Configure Quotes View Controller
+        quotesViewController.didShowQuote = { [weak self] quote in
+            guard let strongSelf = self else { return }
+            strongSelf.showQuote(quote)
+        }
+        
+        quotesViewController.didShowSettings = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.showSettings()
+        }
+        
         // Push Quotes View Controller Onto Navigation Stack
         navigationController.pushViewController(quotesViewController, animated: true)
+    }
+    
+    private func showQuote(_ quote: Quote) {
+        // Initialize Quote View Controller
+        let quoteViewController = QuoteViewController.instantiate()
+        
+        // Configure Quote View Controller
+        quoteViewController.quote = quote
+        
+        // Push Quote View Controller Onto Navigation Stack
+        navigationController.pushViewController(quoteViewController, animated: true)
+    }
+    
+    private func showSettings() {
+        // Initialize Settings View Controller
+        let settingsViewController = SettingsViewController.instantiate()
+        
+        // Configure Settings View Controller
+        settingsViewController.didDissmiss = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.navigationController.dismiss(animated: true)
+        }
+        
+        // Push Settings View Controller Onto Navigation Stack
+        navigationController.present(settingsViewController, animated: true)
     }
 }

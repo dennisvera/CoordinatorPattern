@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuoteViewController: UIViewController {
+class QuoteViewController: UIViewController, StoryBoardable {
 
     // MARK: - Properties
     

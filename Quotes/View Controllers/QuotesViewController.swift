@@ -12,6 +12,9 @@ class QuotesViewController: UIViewController, StoryBoardable {
 
     // MARK: - Properties
     
+    var didShowQuote: ((Quote) -> Void)?
+    var didShowSettings: (() -> Void)?
+    
     private let quotes: [Quote] = [
         Quote(author: "Marie Curie",        content: "Be less curious about people and more curious about ideas."),
         Quote(author: "Albert Einstein",    content: "Life is like riding a bicycle. To keep your balance you must keep moving."),
@@ -47,37 +50,11 @@ class QuotesViewController: UIViewController, StoryBoardable {
         setupNotificationHandling()
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier else {
-            return
-        }
-        
-        if identifier == "Quote" {
-            guard let destination = segue.destination as? QuoteViewController else {
-                return
-            }
-            
-            guard let indexPath = tableView.indexPathForSelectedRow else {
-                return
-            }
-            
-            // Fetch Quote
-            let quote = quotes[indexPath.row]
-            
-            // Configure Destination
-            destination.quote = quote
-        }
-    }
-    
     // MARK: - Actions
     
     @IBAction func settings(_ sender: Any) {
-        let settingsViewController = SettingsViewController.instantiate()
-        
-        // Present Settings View Controller
-        present(settingsViewController, animated: true)
+        // Invoke Handler
+        didShowSettings?()
     }
     
     // MARK: - Helper Methods
@@ -120,6 +97,11 @@ extension QuotesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Fetch Quote
+        let quote = quotes[indexPath.row]
+        
+        // Invoke Handler
+        didShowQuote?(quote)
     }
-    
 }
