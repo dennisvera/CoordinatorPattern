@@ -8,13 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-
-    // MARK: - Type Properties
-    
-    static var storyboardIdentifier: String {
-        return String(describing: self)
-    }
+class SettingsViewController: UIViewController, StoryBoardable {
     
     // MARK: - Properties
     
