@@ -19,6 +19,7 @@
 		CCE41174229FA6D2009EF1C2 /* UserDefaults+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE41173229FA6D2009EF1C2 /* UserDefaults+Settings.swift */; };
 		CCE41176229FA775009EF1C2 /* FontWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE41175229FA775009EF1C2 /* FontWeight.swift */; };
 		CCE4117A229FA9D2009EF1C2 /* Notification+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE41179229FA9D2009EF1C2 /* Notification+Settings.swift */; };
+		E1EE16D724786236006BD2AC /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16D624786236006BD2AC /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CCE41173229FA6D2009EF1C2 /* UserDefaults+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Settings.swift"; sourceTree = "<group>"; };
 		CCE41175229FA775009EF1C2 /* FontWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWeight.swift; sourceTree = "<group>"; };
 		CCE41179229FA9D2009EF1C2 /* Notification+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Settings.swift"; sourceTree = "<group>"; };
+		E1EE16D624786236006BD2AC /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		CCE41150229F9651009EF1C2 /* Quotes */ = {
 			isa = PBXGroup;
 			children = (
+				E1EE16D52478620A006BD2AC /* Coordinators */,
 				CCE41167229F9682009EF1C2 /* Application Delegate */,
 				CCE41166229F967A009EF1C2 /* View Controllers */,
 				CCE41165229F9670009EF1C2 /* Storyboards */,
@@ -149,6 +152,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E1EE16D52478620A006BD2AC /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E1EE16D624786236006BD2AC /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,6 +233,7 @@
 			files = (
 				CCE41169229F96A6009EF1C2 /* QuoteViewController.swift in Sources */,
 				CCE41154229F9651009EF1C2 /* QuotesViewController.swift in Sources */,
+				E1EE16D724786236006BD2AC /* AppCoordinator.swift in Sources */,
 				CCE41176229FA775009EF1C2 /* FontWeight.swift in Sources */,
 				CCE41171229F9A87009EF1C2 /* QuoteTableViewCell.swift in Sources */,
 				CCE41174229FA6D2009EF1C2 /* UserDefaults+Settings.swift in Sources */,
