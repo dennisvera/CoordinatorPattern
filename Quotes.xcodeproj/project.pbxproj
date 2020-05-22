@@ -21,7 +21,7 @@
 		CCE4117A229FA9D2009EF1C2 /* Notification+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE41179229FA9D2009EF1C2 /* Notification+Settings.swift */; };
 		E1EE16D724786236006BD2AC /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16D624786236006BD2AC /* AppCoordinator.swift */; };
 		E1EE16DA24786C1D006BD2AC /* StoryBoardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16D924786C1D006BD2AC /* StoryBoardable.swift */; };
-		E1EE16E22478717B006BD2AC /* QuotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16E12478717B006BD2AC /* QuotesTests.swift */; };
+		E1EE16E22478717B006BD2AC /* StoryBoardableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16E12478717B006BD2AC /* StoryBoardableTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		E1EE16D624786236006BD2AC /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E1EE16D924786C1D006BD2AC /* StoryBoardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoardable.swift; sourceTree = "<group>"; };
 		E1EE16DF2478717B006BD2AC /* QuotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1EE16E12478717B006BD2AC /* QuotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesTests.swift; sourceTree = "<group>"; };
+		E1EE16E12478717B006BD2AC /* StoryBoardableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoardableTests.swift; sourceTree = "<group>"; };
 		E1EE16E32478717B006BD2AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,7 +197,7 @@
 		E1EE16E02478717B006BD2AC /* QuotesTests */ = {
 			isa = PBXGroup;
 			children = (
-				E1EE16E12478717B006BD2AC /* QuotesTests.swift */,
+				E1EE16E12478717B006BD2AC /* StoryBoardableTests.swift */,
 				E1EE16E32478717B006BD2AC /* Info.plist */,
 			);
 			path = QuotesTests;
@@ -322,7 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1EE16E22478717B006BD2AC /* QuotesTests.swift in Sources */,
+				E1EE16E22478717B006BD2AC /* StoryBoardableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
