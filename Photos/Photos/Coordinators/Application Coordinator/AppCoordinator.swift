@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class AppCoordinator: NSObject {
+class AppCoordinator: Coordinator {
 
     // MARK: - Properties
     
@@ -25,10 +25,30 @@ class AppCoordinator: NSObject {
     
     // MARK: -
     
-    func start() {
+    override func start() {
+        // Set Navigation Controller Delegate
         navigationController.delegate = self
         
+        // Show Photos
         showPhotos()
+    }
+    
+    override func navigationController(_ navigationController: UINavigationController,
+                              willShow viewController: UIViewController,
+                              animated: Bool) {
+        
+        childCoordinators.forEach { childCoordinator in
+            childCoordinator.navigationController(navigationController, willShow: viewController, animated: animated)
+        }
+    }
+    
+    override func navigationController(_ navigationController: UINavigationController,
+                              didShow viewController: UIViewController,
+                              animated: Bool) {
+        
+        childCoordinators.forEach { childCoordinator in
+            childCoordinator.navigationController(navigationController, didShow: viewController, animated: animated)
+        }
     }
     
     // MARK: - Helper Methods
@@ -94,7 +114,7 @@ class AppCoordinator: NSObject {
     
     private func buyPhoto(_ photo: Photo) {
         // Initialize Buy Coordinator
-        let buyCoordinator = BuyCoordinator(navigationController: navigationController, photo: photo)
+        let buyCoordinator = VerticalBuyCoordinator(presentingViewController: navigationController, photo: photo)
         
         // Start Buy Coordinator
         pushCoordinator(buyCoordinator)
@@ -113,27 +133,6 @@ class AppCoordinator: NSObject {
     private func popCoordinator(_ coordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
-        }
-    }
-}
-
-extension AppCoordinator: UINavigationControllerDelegate {
-    
-    func navigationController(_ navigationController: UINavigationController,
-                              willShow viewController: UIViewController,
-                              animated: Bool) {
-        
-        childCoordinators.forEach { childCoordinator in
-            childCoordinator.navigationController(navigationController, willShow: viewController, animated: animated)
-        }
-    }
-    
-    func navigationController(_ navigationController: UINavigationController,
-                              didShow viewController: UIViewController,
-                              animated: Bool) {
-        
-        childCoordinators.forEach { childCoordinator in
-            childCoordinator.navigationController(navigationController, didShow: viewController, animated: animated)
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BuyCoordinator.swift
+//  VerticalBuyCoordinator.swift
 //  Photos
 //
 //  Created by Dennis Vera on 5/25/20.
@@ -8,31 +8,25 @@
 
 import UIKit
 
-class BuyCoordinator: Coordinator {
+class VerticalBuyCoordinator: Coordinator {
     
     // MARK: - Properties
     
     private let navigationController: UINavigationController
-    private let initialViewController: UIViewController?
+    private let presentingViewController: UIViewController
     private let photo: Photo
-        
-    // MARK: - Intialaization
     
-    init(navigationController: UINavigationController, photo: Photo) {
-        // Set Navigation Controller
-        self.navigationController = navigationController
-        
-        // Set Photo
+    // MARK: - Initializaton
+    
+    init(presentingViewController: UIViewController, photo: Photo) {
+        self.presentingViewController = presentingViewController
         self.photo = photo
         
-        // Set Initial View Controller
-        self.initialViewController = navigationController.viewControllers.last
+        self.navigationController = UINavigationController()
         
         super.init()
-    }
-    
-    deinit {
-        print("DEALLOCATING BUY COORDIONATOR")
+        
+        self.navigationController.delegate = self
     }
     
     // MARK: - Public API
@@ -43,27 +37,8 @@ class BuyCoordinator: Coordinator {
         } else {
             showSignIn()
         }
-    }
-    
-    override func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if viewController === initialViewController {
-            // Invoke Handler
-            didFinish?(self)
-        }
-    }
-    
-    // MARK: - Private API
-    
-    private func finish() {
-        // Reset Navigation Controller
-        if let viewController = initialViewController {
-            navigationController.popToViewController(viewController, animated: true)
-        } else {
-            navigationController.popToRootViewController(animated: true)
-            
-            // Invoke Handler
-            didFinish?(self)
-        }
+        
+        presentingViewController.present(navigationController, animated: true)
     }
     
     private func showSignIn() {
@@ -87,6 +62,12 @@ class BuyCoordinator: Coordinator {
         
         // Push View Controller Onto Navigation Stack
         navigationController.pushViewController(signInViewController, animated: true)
+    }
+    
+    private func finish() {
+        presentingViewController.dismiss(animated: true)
+        
+        didFinish?(self)
     }
     
     private func buyPhoto(_ photo: Photo) {
