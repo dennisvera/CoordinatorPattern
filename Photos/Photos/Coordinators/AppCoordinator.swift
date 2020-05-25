@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class AppCoordinator {
+class AppCoordinator: NSObject {
 
     // MARK: - Properties
     
@@ -26,6 +26,8 @@ class AppCoordinator {
     // MARK: -
     
     func start() {
+        navigationController.delegate = self
+        
         showPhotos()
     }
     
@@ -111,6 +113,27 @@ class AppCoordinator {
     private func popCoordinator(_ coordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
+        }
+    }
+}
+
+extension AppCoordinator: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              willShow viewController: UIViewController,
+                              animated: Bool) {
+        
+        childCoordinators.forEach { childCoordinator in
+            childCoordinator.navigationController(navigationController, willShow: viewController, animated: animated)
+        }
+    }
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              didShow viewController: UIViewController,
+                              animated: Bool) {
+        
+        childCoordinators.forEach { childCoordinator in
+            childCoordinator.navigationController(navigationController, didShow: viewController, animated: animated)
         }
     }
 }

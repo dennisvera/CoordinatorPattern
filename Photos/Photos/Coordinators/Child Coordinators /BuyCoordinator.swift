@@ -31,6 +31,10 @@ class BuyCoordinator: Coordinator {
         self.initialViewController = navigationController.viewControllers.last
     }
     
+    deinit {
+        print("DEALLOCATING BUY COORDIONATOR")
+    }
+    
     // MARK: - Public API
     
     func start() {
@@ -38,6 +42,13 @@ class BuyCoordinator: Coordinator {
             buyPhoto(photo)
         } else {
             showSignIn()
+        }
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController === initialViewController {
+            // Invoke Handler
+            didFinish?(self)
         }
     }
     
@@ -49,10 +60,10 @@ class BuyCoordinator: Coordinator {
             navigationController.popToViewController(viewController, animated: true)
         } else {
             navigationController.popToRootViewController(animated: true)
+            
+            // Invoke Handler
+            didFinish?(self)
         }
-        
-        // Invoke Handler
-        didFinish?(self)
     }
     
     private func showSignIn() {

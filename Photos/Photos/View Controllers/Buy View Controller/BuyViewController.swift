@@ -55,6 +55,9 @@ class BuyViewController: UIViewController, Storyboardable {
         // Add Bar Button Item
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         
+        // Hide Navigation Bar Back Button
+        navigationItem.hidesBackButton = true
+        
         // Setup Title Label
         setupTitleLabel()
         
