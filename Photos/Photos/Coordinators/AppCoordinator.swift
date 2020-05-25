@@ -10,19 +10,11 @@ import UIKit
 import Foundation
 
 class AppCoordinator {
-    
-    private enum PresentationStyle {
-        
-        case present
-        case push
-    }
-    
+
     // MARK: - Properties
     
     private let navigationController = UINavigationController()
-    
-    private var isBuyingPhoto: Photo?
-    
+        
     // MARK: - Public API
     
     var rootViewController: UIViewController {
@@ -43,7 +35,7 @@ class AppCoordinator {
         
         // Install Handlers
         photosViewController.didSignIn = { [weak self] in
-            self?.showSignIn(style: .present)
+            self?.showSignIn()
         }
         
         photosViewController.didSelectPhoto = { [weak self] (photo) in
@@ -65,13 +57,7 @@ class AppCoordinator {
         
         // Install Handlers
         photoViewController.didBuyPhoto = { [weak self] (photo) in
-            self?.isBuyingPhoto = photo
-            
-            if UserDefaults.isSignedIn {
-                self?.buyPhoto(photo)
-            } else {
-                self?.showSignIn(style: .push)
-            }
+            self?.buyPhoto(photo)
         }
         
         // Push Photo View Controller Onto Navigation Stack
@@ -80,7 +66,7 @@ class AppCoordinator {
     
     // MARK: -
     
-    private func showSignIn(style: PresentationStyle) {
+    private func showSignIn() {
         // Initialize Sign In View Controller
         let signInViewController = SignInViewController.instantiate()
         
@@ -88,63 +74,22 @@ class AppCoordinator {
         signInViewController.didSignIn = { [weak self] token in
             UserDefaults.token = token
             
-            if let photo = self?.isBuyingPhoto {
-                self?.buyPhoto(photo)
-            } else {
-                self?.navigationController.dismiss(animated: true)
-                
-            }
+            // Dismiss View Controller
+            self?.navigationController.dismiss(animated: true)
         }
         
-        // Install Handlers
         signInViewController.didCancel = { [weak self] in
             self?.navigationController.dismiss(animated: true)
         }
         
-        switch style {
-        case .present:
-            // Push Sign In View Controller Onto Navigation Stack
-            navigationController.present(signInViewController, animated: true)
-        case .push:
-            navigationController.pushViewController(signInViewController, animated: true)
-        }
+        self.navigationController.present(signInViewController, animated: true)
     }
     
     // MARK: -
     
     private func buyPhoto(_ photo: Photo) {
-        // Initialize Buy View Controller
-        let buyViewController = BuyViewController.instantiate()
+        let buyCoordinator = BuyCoordinator(navigationController: navigationController, photo: photo)
         
-        // Configure Buy View Controller
-        buyViewController.photo = photo
-        
-        // Install Handlers
-        buyViewController.didCancel = { [weak self] in
-            self?.isBuyingPhoto = nil
-            
-            if let viewController = self?.navigationController.viewControllers.first(where: { $0 is PhotoViewController }) {
-                self?.navigationController.popToViewController(viewController, animated: true)
-            } else {
-                self?.navigationController.popToRootViewController(animated: true)
-            }
-        }
-        
-        buyViewController.didBuyPhoto = { [weak self] _ in
-            self?.isBuyingPhoto = nil
-            
-            // Update User Defaults
-            UserDefaults.buy(photo: photo)
-            
-            if let viewController = self?.navigationController.viewControllers.first(where: { $0 is PhotoViewController }) {
-                self?.navigationController.popToViewController(viewController, animated: true)
-            } else {
-                self?.navigationController.popToRootViewController(animated: true)
-            }
-        }
-        
-        // Push Buy View Controller Onto Navigation Stack
-        navigationController.pushViewController(buyViewController, animated: true)
+        buyCoordinator.start()
     }
-    
 }

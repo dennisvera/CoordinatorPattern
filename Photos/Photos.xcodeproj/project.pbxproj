@@ -20,6 +20,7 @@
 		CC8C884F22B3F8320033AB37 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C884E22B3F8320033AB37 /* Photo.swift */; };
 		CC8C885222B3F8D50033AB37 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C885122B3F8D50033AB37 /* SignInViewController.swift */; };
 		CCE17FB322B4BC9900C2DBDA /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */; };
+		E1EE16ED247C3219006BD2AC /* BuyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16EC247C3219006BD2AC /* BuyCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		CC8C884E22B3F8320033AB37 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		CC8C885122B3F8D50033AB37 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
+		E1EE16EC247C3219006BD2AC /* BuyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8C884522B3F33C0033AB37 /* AppCoordinator.swift */,
+				E1EE16E9247C2F40006BD2AC /* Child Coordinators  */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -198,6 +201,14 @@
 				CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */,
 			);
 			path = "Buy View Controller";
+			sourceTree = "<group>";
+		};
+		E1EE16E9247C2F40006BD2AC /* Child Coordinators  */ = {
+			isa = PBXGroup;
+			children = (
+				E1EE16EC247C3219006BD2AC /* BuyCoordinator.swift */,
+			);
+			path = "Child Coordinators ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +292,7 @@
 				CC8C884322B3F2F10033AB37 /* Storyboardable.swift in Sources */,
 				CC8C882A22B3F2140033AB37 /* AppDelegate.swift in Sources */,
 				CC8C884C22B3F6010033AB37 /* PhotoViewController.swift in Sources */,
+				E1EE16ED247C3219006BD2AC /* BuyCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
