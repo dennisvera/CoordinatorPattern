@@ -11,9 +11,17 @@ import Foundation
 
 class AppCoordinator {
     
+    private enum PresentationStyle {
+        
+        case present
+        case push
+    }
+    
     // MARK: - Properties
     
     private let navigationController = UINavigationController()
+    
+    private var isBuyingPhoto: Photo?
     
     // MARK: - Public API
     
@@ -34,6 +42,10 @@ class AppCoordinator {
         let photosViewController = PhotosViewController.instantiate()
         
         // Install Handlers
+        photosViewController.didSignIn = { [weak self] in
+            self?.showSignIn(style: .present)
+        }
+        
         photosViewController.didSelectPhoto = { [weak self] (photo) in
             self?.showPhoto(photo)
         }
@@ -53,11 +65,49 @@ class AppCoordinator {
         
         // Install Handlers
         photoViewController.didBuyPhoto = { [weak self] (photo) in
-            self?.buyPhoto(photo)
+            self?.isBuyingPhoto = photo
+            
+            if UserDefaults.isSignedIn {
+                self?.buyPhoto(photo)
+            } else {
+                self?.showSignIn(style: .push)
+            }
         }
         
         // Push Photo View Controller Onto Navigation Stack
         navigationController.pushViewController(photoViewController, animated: true)
+    }
+    
+    // MARK: -
+    
+    private func showSignIn(style: PresentationStyle) {
+        // Initialize Sign In View Controller
+        let signInViewController = SignInViewController.instantiate()
+        
+        // Install Handlers
+        signInViewController.didSignIn = { [weak self] token in
+            UserDefaults.token = token
+            
+            if let photo = self?.isBuyingPhoto {
+                self?.buyPhoto(photo)
+            } else {
+                self?.navigationController.dismiss(animated: true)
+                
+            }
+        }
+        
+        // Install Handlers
+        signInViewController.didCancel = { [weak self] in
+            self?.navigationController.dismiss(animated: true)
+        }
+        
+        switch style {
+        case .present:
+            // Push Sign In View Controller Onto Navigation Stack
+            navigationController.present(signInViewController, animated: true)
+        case .push:
+            navigationController.pushViewController(signInViewController, animated: true)
+        }
     }
     
     // MARK: -
@@ -71,16 +121,26 @@ class AppCoordinator {
         
         // Install Handlers
         buyViewController.didCancel = { [weak self] in
-            // Pop View Controller From Navigation Stack
-            self?.navigationController.popViewController(animated: true)
+            self?.isBuyingPhoto = nil
+            
+            if let viewController = self?.navigationController.viewControllers.first(where: { $0 is PhotoViewController }) {
+                self?.navigationController.popToViewController(viewController, animated: true)
+            } else {
+                self?.navigationController.popToRootViewController(animated: true)
+            }
         }
         
         buyViewController.didBuyPhoto = { [weak self] _ in
+            self?.isBuyingPhoto = nil
+            
             // Update User Defaults
             UserDefaults.buy(photo: photo)
-
-            // Pop View Controller From Navigation Stack
-            self?.navigationController.popViewController(animated: true)
+            
+            if let viewController = self?.navigationController.viewControllers.first(where: { $0 is PhotoViewController }) {
+                self?.navigationController.popToViewController(viewController, animated: true)
+            } else {
+                self?.navigationController.popToRootViewController(animated: true)
+            }
         }
         
         // Push Buy View Controller Onto Navigation Stack
