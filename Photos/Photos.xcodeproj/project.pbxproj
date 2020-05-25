@@ -21,6 +21,7 @@
 		CC8C885222B3F8D50033AB37 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C885122B3F8D50033AB37 /* SignInViewController.swift */; };
 		CCE17FB322B4BC9900C2DBDA /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */; };
 		E1EE16ED247C3219006BD2AC /* BuyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16EC247C3219006BD2AC /* BuyCoordinator.swift */; };
+		E1EE16EF247C3998006BD2AC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE16EE247C3998006BD2AC /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		CC8C885122B3F8D50033AB37 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
 		E1EE16EC247C3219006BD2AC /* BuyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoordinator.swift; sourceTree = "<group>"; };
+		E1EE16EE247C3998006BD2AC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8C884222B3F2F10033AB37 /* Storyboardable.swift */,
+				E1EE16EE247C3998006BD2AC /* Coordinator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				CC8C882C22B3F2140033AB37 /* PhotosViewController.swift in Sources */,
 				CC8C885222B3F8D50033AB37 /* SignInViewController.swift in Sources */,
 				CC8C884322B3F2F10033AB37 /* Storyboardable.swift in Sources */,
+				E1EE16EF247C3998006BD2AC /* Coordinator.swift in Sources */,
 				CC8C882A22B3F2140033AB37 /* AppDelegate.swift in Sources */,
 				CC8C884C22B3F6010033AB37 /* PhotoViewController.swift in Sources */,
 				E1EE16ED247C3219006BD2AC /* BuyCoordinator.swift in Sources */,

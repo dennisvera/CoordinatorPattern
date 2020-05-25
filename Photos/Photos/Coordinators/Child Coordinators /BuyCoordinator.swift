@@ -8,26 +8,32 @@
 
 import UIKit
 
-class BuyCoordinator {
+class BuyCoordinator: Coordinator {
     
     // MARK: - Properties
     
     private var navigationController: UINavigationController
-    
+    private var initialViewController: UIViewController?
     private var photo: Photo
     
+    var didFinish: ((Coordinator) -> Void)?
     
     // MARK: - Intialaization
     
     init(navigationController: UINavigationController, photo: Photo) {
+        // Set Navigation Controller
         self.navigationController = navigationController
+        
+        // Set Photo
         self.photo = photo
+        
+        // Set Initial View Controller
+        self.initialViewController = navigationController.viewControllers.last
     }
     
-    // MARK: - Helper Methods
+    // MARK: - Public API
     
     func start() {
-        
         if UserDefaults.isSignedIn {
             buyPhoto(photo)
         } else {
@@ -35,14 +41,25 @@ class BuyCoordinator {
         }
     }
     
+    // MARK: - Private API
+    
     private func finish() {
+        // Reset Navigation Controller
+        if let viewController = initialViewController {
+            navigationController.popToViewController(viewController, animated: true)
+        } else {
+            navigationController.popToRootViewController(animated: true)
+        }
         
+        // Invoke Handler
+        didFinish?(self)
     }
     
     private func showSignIn() {
         // Initialize Sign In View Controller
         let signInViewController = SignInViewController.instantiate()
         
+        // Helpers
         let photo = self.photo
         
         // Install Handlers
@@ -53,11 +70,11 @@ class BuyCoordinator {
             self?.buyPhoto(photo)
         }
         
-        // Install Handlers
         signInViewController.didCancel = { [weak self] in
             self?.finish()
         }
         
+        // Push View Controller Onto Navigation Stack
         navigationController.pushViewController(signInViewController, animated: true)
     }
     
@@ -73,6 +90,7 @@ class BuyCoordinator {
             // Update User Defaults
             UserDefaults.buy(photo: photo)
             
+            // Finish
             self?.finish()
         }
         

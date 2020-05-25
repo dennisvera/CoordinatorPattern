@@ -14,6 +14,8 @@ class AppCoordinator {
     // MARK: - Properties
     
     private let navigationController = UINavigationController()
+    
+    private var childCoordinators: [Coordinator] = []
         
     // MARK: - Public API
     
@@ -82,14 +84,33 @@ class AppCoordinator {
             self?.navigationController.dismiss(animated: true)
         }
         
+        // Push View Controller Onto Navigation Stack
         self.navigationController.present(signInViewController, animated: true)
     }
     
     // MARK: -
     
     private func buyPhoto(_ photo: Photo) {
+        // Initialize Buy Coordinator
         let buyCoordinator = BuyCoordinator(navigationController: navigationController, photo: photo)
         
-        buyCoordinator.start()
+        // Start Buy Coordinator
+        pushCoordinator(buyCoordinator)
+    }
+    
+    private func pushCoordinator(_ coordinator: Coordinator) {
+        coordinator.didFinish = { [weak self] coordinator in
+            self?.popCoordinator(coordinator)
+        }
+        
+        coordinator.start()
+        
+        childCoordinators.append(coordinator)
+    }
+    
+    private func popCoordinator(_ coordinator: Coordinator) {
+        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: index)
+        }
     }
 }
