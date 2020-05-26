@@ -17,21 +17,20 @@ class AppCoordinator: Coordinator {
         
         case horizontal
         case vertical
+        
     }
-
+    
     // MARK: - Properties
     
     private let navigationController = UINavigationController()
     
-    private var childCoordinators: [Coordinator] = []
-        
     // MARK: - Public API
     
     var rootViewController: UIViewController {
         return navigationController
     }
     
-    // MARK: -
+    // MARK: - Overrides
     
     override func start() {
         // Set Navigation Controller Delegate
@@ -41,25 +40,21 @@ class AppCoordinator: Coordinator {
         showPhotos()
     }
     
-    override func navigationController(_ navigationController: UINavigationController,
-                              willShow viewController: UIViewController,
-                              animated: Bool) {
-        
-        childCoordinators.forEach { childCoordinator in
+    // MARK: -
+    
+    override func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        childCoordinators.forEach { (childCoordinator) in
             childCoordinator.navigationController(navigationController, willShow: viewController, animated: animated)
         }
     }
     
-    override func navigationController(_ navigationController: UINavigationController,
-                              didShow viewController: UIViewController,
-                              animated: Bool) {
-        
-        childCoordinators.forEach { childCoordinator in
+    override func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        childCoordinators.forEach { (childCoordinator) in
             childCoordinator.navigationController(navigationController, didShow: viewController, animated: animated)
         }
     }
     
-    // MARK: - Helper Methods
+    // MARK: -
     
     private func showPhotos() {
         // Initialize Photos View Controller
@@ -74,14 +69,37 @@ class AppCoordinator: Coordinator {
             self?.showPhoto(photo)
         }
         
-        photosViewController.didBuyPhoto = { [weak self] photo in
+        photosViewController.didBuyPhoto = { [weak self] (photo) in
             self?.buyPhoto(photo, purchaseFlowType: .vertical)
         }
         
         // Push Photos View Controller Onto Navigation Stack
         navigationController.pushViewController(photosViewController, animated: true)
     }
-
+    
+    // MARK: -
+    
+    private func showSignIn() {
+        // Initialize Sign In View Controller
+        let signInViewController = SignInViewController.instantiate()
+        
+        // Install Handlers
+        signInViewController.didSignIn = { [weak self] (token) in
+            // Update User Defaults
+            UserDefaults.token = token
+            
+            // Dismiss View Controller
+            self?.navigationController.dismiss(animated: true)
+        }
+        
+        signInViewController.didCancel = { [weak self] in
+            self?.navigationController.dismiss(animated: true)
+        }
+        
+        // Present Sign In View Controller
+        navigationController.present(signInViewController, animated: true)
+    }
+    
     // MARK: -
     
     private func showPhoto(_ photo: Photo) {
@@ -102,29 +120,8 @@ class AppCoordinator: Coordinator {
     
     // MARK: -
     
-    private func showSignIn() {
-        // Initialize Sign In View Controller
-        let signInViewController = SignInViewController.instantiate()
-        
-        // Install Handlers
-        signInViewController.didSignIn = { [weak self] token in
-            UserDefaults.token = token
-            
-            // Dismiss View Controller
-            self?.navigationController.dismiss(animated: true)
-        }
-        
-        signInViewController.didCancel = { [weak self] in
-            self?.navigationController.dismiss(animated: true)
-        }
-        
-        // Push View Controller Onto Navigation Stack
-        self.navigationController.present(signInViewController, animated: true)
-    }
-    
-    // MARK: -
-    
     private func buyPhoto(_ photo: Photo, purchaseFlowType: PurchaseFlowType) {
+        // Helpers
         let buyCoordinator: BuyCoordinator
         
         switch purchaseFlowType {
@@ -134,23 +131,8 @@ class AppCoordinator: Coordinator {
             buyCoordinator = BuyCoordinator(presentingViewController: navigationController, photo: photo)
         }
         
-        // Start Buy Coordinator
+        // Push Buy Coordinator
         pushCoordinator(buyCoordinator)
     }
     
-    private func pushCoordinator(_ coordinator: Coordinator) {
-        coordinator.didFinish = { [weak self] coordinator in
-            self?.popCoordinator(coordinator)
-        }
-        
-        coordinator.start()
-        
-        childCoordinators.append(coordinator)
-    }
-    
-    private func popCoordinator(_ coordinator: Coordinator) {
-        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-            childCoordinators.remove(at: index)
-        }
-    }
 }

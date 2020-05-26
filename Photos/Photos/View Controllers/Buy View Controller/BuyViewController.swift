@@ -39,24 +39,28 @@ class BuyViewController: UIViewController, Storyboardable {
     // MARK: -
     
     var didBuyPhoto: ((Photo) -> Void)?
+    
+    // MARK: -
+    
+    var didShowTerms: (() -> Void)?
 
     // MARK: - View Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setup View
         setupView()
+        
+        // Hide Back Button
+        navigationItem.hidesBackButton = true
     }
-    
+
     // MARK: - View Methods
     
     private func setupView() {
         // Add Bar Button Item
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
-        
-        // Hide Navigation Bar Back Button
-        navigationItem.hidesBackButton = true
         
         // Setup Title Label
         setupTitleLabel()
@@ -132,9 +136,13 @@ class BuyViewController: UIViewController, Storyboardable {
             }
         }
     }
+    
+    
+    @IBAction func showTerms(_ sender: Any) {
+        didShowTerms?()
+    }
 
     @objc func cancel(_ sender: UIBarButtonItem) {
         didCancel?()
     }
-
 }

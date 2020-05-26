@@ -2,8 +2,8 @@
 //  Coordinator.swift
 //  Photos
 //
-//  Created by Dennis Vera on 5/25/20.
-//  Copyright © 2020 Code Foundry. All rights reserved.
+//  Created by Bart Jacobs on 27/06/2019.
+//  Copyright © 2019 Code Foundry. All rights reserved.
 //
 
 import UIKit
@@ -14,10 +14,39 @@ class Coordinator: NSObject, UINavigationControllerDelegate {
     
     var didFinish: ((Coordinator) -> Void)?
     
+    
+    // MARK: -
+    
+    var childCoordinators: [Coordinator] = []
+    
     // MARK: - Methods
     
     func start() {}
     
+    // MARK: -
+    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {}
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {}
+    
+    // MARK: - Helper Methods
+    
+    func pushCoordinator(_ coordinator: Coordinator) {
+        // Install Handler
+        coordinator.didFinish = { [weak self] (coordinator) in
+            self?.popCoordinator(coordinator)
+        }
+        
+        // Start Coordinator
+        coordinator.start()
+        
+        // Append to Child Coordinators
+        childCoordinators.append(coordinator)
+    }
+    
+    func popCoordinator(_ coordinator: Coordinator) {
+        // Remove Coordinator From Child Coordinators
+        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: index)
+        }
+    }
 }

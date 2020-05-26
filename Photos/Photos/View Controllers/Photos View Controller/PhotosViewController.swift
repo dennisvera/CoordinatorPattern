@@ -21,9 +21,9 @@ class PhotosViewController: UIViewController, Storyboardable {
     }
     
     // MARK: -
-
+    
     var didSignIn: (() -> Void)?
-
+    
     // MARK: -
     
     var didBuyPhoto: ((Photo) -> Void)?
@@ -78,6 +78,7 @@ class PhotosViewController: UIViewController, Storyboardable {
         }
         
         if let indexPaths = tableView.indexPathsForVisibleRows {
+            // Update Table View
             tableView.reloadRows(at: indexPaths, with: .none)
         }
     }
@@ -117,6 +118,7 @@ extension PhotosViewController: UITableViewDataSource {
         // Configure Cell
         cell.configure(title: photo.title, url: photo.url, didBuyPhoto: UserDefaults.didBuy(photo))
         
+        // Install Handler
         cell.didBuy = { [weak self] in
             self?.didBuyPhoto?(photo)
         }
