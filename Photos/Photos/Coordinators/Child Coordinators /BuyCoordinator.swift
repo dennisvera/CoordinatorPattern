@@ -12,9 +12,10 @@ class BuyCoordinator: Coordinator {
     
     // MARK: - Properties
     
-    private let navigationController: UINavigationController
-    private let initialViewController: UIViewController?
     private let photo: Photo
+    private let navigationController: UINavigationController
+    private var initialViewController: UIViewController?
+    private var presentingViewController: UIViewController?
         
     // MARK: - Intialaization
     
@@ -31,6 +32,17 @@ class BuyCoordinator: Coordinator {
         super.init()
     }
     
+    init(presentingViewController: UIViewController, photo: Photo) {
+        self.presentingViewController = presentingViewController
+        self.photo = photo
+        
+        self.navigationController = UINavigationController()
+        
+        super.init()
+        
+        self.navigationController.delegate = self
+    }
+    
     deinit {
         print("DEALLOCATING BUY COORDIONATOR")
     }
@@ -43,6 +55,8 @@ class BuyCoordinator: Coordinator {
         } else {
             showSignIn()
         }
+        
+        presentingViewController?.present(navigationController, animated: true)
     }
     
     override func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
@@ -57,9 +71,11 @@ class BuyCoordinator: Coordinator {
     private func finish() {
         // Reset Navigation Controller
         if let viewController = initialViewController {
+            // Pop to Intial Root View Controller
             navigationController.popToViewController(viewController, animated: true)
         } else {
-            navigationController.popToRootViewController(animated: true)
+            // Dismiss Navaigation Controller
+            presentingViewController?.dismiss(animated: true)
             
             // Invoke Handler
             didFinish?(self)

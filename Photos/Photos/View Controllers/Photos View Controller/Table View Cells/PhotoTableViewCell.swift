@@ -18,6 +18,9 @@ class PhotoTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
+    private var dataTask: URLSessionDataTask?
+    var didBuy: (() -> Void)?
+    
     @IBOutlet private var titleLabel: UILabel!
     
     // MARK: -
@@ -28,15 +31,20 @@ class PhotoTableViewCell: UITableViewCell {
     
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     
-    // MARK: -
-    
-    private var dataTask: URLSessionDataTask?
-    
+    @IBOutlet var buyButton: UIButton! {
+        didSet {
+            buyButton.setTitle("Buy", for: .normal)
+            buyButton.addTarget(self, action: #selector(buy(_:)), for: .touchUpInside)
+        }
+    }
+            
     // MARK: - Public API
     
-    func configure(title: String, url: URL?) {
+    func configure(title: String, url: URL?, didBuyPhoto: Bool) {
         // Configure Title Label
         titleLabel.text = title
+        
+        buyButton.isHidden = didBuyPhoto
         
         // Animate Activity Indicator View
         activityIndicatorView.startAnimating()
@@ -75,5 +83,10 @@ class PhotoTableViewCell: UITableViewCell {
         // Reset Thumnail Image View
         thumbnailImageView.image = nil
     }
+    
+    // MARK: - Actions
 
+   @objc private func buy(_ sender: UIButton) {
+        didBuy?()
+    }
 }

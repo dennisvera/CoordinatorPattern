@@ -10,6 +10,14 @@ import UIKit
 import Foundation
 
 class AppCoordinator: Coordinator {
+    
+    // MARK: - Types
+    
+    private enum PurchaseFlowType {
+        
+        case horizontal
+        case vertical
+    }
 
     // MARK: - Properties
     
@@ -66,6 +74,10 @@ class AppCoordinator: Coordinator {
             self?.showPhoto(photo)
         }
         
+        photosViewController.didBuyPhoto = { [weak self] photo in
+            self?.buyPhoto(photo, purchaseFlowType: .vertical)
+        }
+        
         // Push Photos View Controller Onto Navigation Stack
         navigationController.pushViewController(photosViewController, animated: true)
     }
@@ -81,7 +93,7 @@ class AppCoordinator: Coordinator {
         
         // Install Handlers
         photoViewController.didBuyPhoto = { [weak self] (photo) in
-            self?.buyPhoto(photo)
+            self?.buyPhoto(photo, purchaseFlowType: .horizontal)
         }
         
         // Push Photo View Controller Onto Navigation Stack
@@ -112,9 +124,15 @@ class AppCoordinator: Coordinator {
     
     // MARK: -
     
-    private func buyPhoto(_ photo: Photo) {
-        // Initialize Buy Coordinator
-        let buyCoordinator = VerticalBuyCoordinator(presentingViewController: navigationController, photo: photo)
+    private func buyPhoto(_ photo: Photo, purchaseFlowType: PurchaseFlowType) {
+        let buyCoordinator: BuyCoordinator
+        
+        switch purchaseFlowType {
+        case .horizontal:
+            buyCoordinator = BuyCoordinator(navigationController: navigationController, photo: photo)
+        case .vertical:
+            buyCoordinator = BuyCoordinator(presentingViewController: navigationController, photo: photo)
+        }
         
         // Start Buy Coordinator
         pushCoordinator(buyCoordinator)
