@@ -32,6 +32,9 @@
 		CCF4BEF022F2DF080067C87E /* TermsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF4BEEF22F2DF080067C87E /* TermsCoordinator.swift */; };
 		E1E866CB247D9C89003F7E03 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E866CA247D9C89003F7E03 /* ProfileCoordinator.swift */; };
 		E1E866CD247D9D80003F7E03 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E866CC247D9D80003F7E03 /* AppCoordinator.swift */; };
+		E1E866D0247DB475003F7E03 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E866CF247DB475003F7E03 /* PhotosViewModel.swift */; };
+		E1E866D2247DB63A003F7E03 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E866D1247DB63A003F7E03 /* PhotoViewModel.swift */; };
+		E1E866D4247DB926003F7E03 /* PhotoPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E866D3247DB926003F7E03 /* PhotoPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		CCF4BEEF22F2DF080067C87E /* TermsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCoordinator.swift; sourceTree = "<group>"; };
 		E1E866CA247D9C89003F7E03 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileCoordinator.swift; path = "Photos/View Controllers/Terms View Controller/ProfileCoordinator.swift"; sourceTree = SOURCE_ROOT; };
 		E1E866CC247D9D80003F7E03 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		E1E866CF247DB475003F7E03 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
+		E1E866D1247DB63A003F7E03 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		E1E866D3247DB926003F7E03 /* PhotoPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8C882B22B3F2140033AB37 /* PhotosViewController.swift */,
+				E1E866CE247DB3F1003F7E03 /* View Models */,
 				CC8C884722B3F48F0033AB37 /* Table View Cells */,
 			);
 			path = "Photos View Controller";
@@ -219,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8C884222B3F2F10033AB37 /* Storyboardable.swift */,
+				E1E866D3247DB926003F7E03 /* PhotoPresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -290,6 +298,15 @@
 				CC59BB6822F85567007371B9 /* Code */,
 			);
 			path = "Terms View Controller";
+			sourceTree = "<group>";
+		};
+		E1E866CE247DB3F1003F7E03 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E1E866CF247DB475003F7E03 /* PhotosViewModel.swift */,
+				E1E866D1247DB63A003F7E03 /* PhotoViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,8 +382,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E866D0247DB475003F7E03 /* PhotosViewModel.swift in Sources */,
+				E1E866D2247DB63A003F7E03 /* PhotoViewModel.swift in Sources */,
 				CC8C884F22B3F8320033AB37 /* Photo.swift in Sources */,
 				CCE17FB322B4BC9900C2DBDA /* BuyViewController.swift in Sources */,
+				E1E866D4247DB926003F7E03 /* PhotoPresentable.swift in Sources */,
 				CC0339B022B4ABEC00C3DB17 /* UserDefaults+Photos.swift in Sources */,
 				CCF4BEEE22F2D6B20067C87E /* TermsViewControllerCode.swift in Sources */,
 				CC59BB6122F854D1007371B9 /* TermsViewController.swift in Sources */,

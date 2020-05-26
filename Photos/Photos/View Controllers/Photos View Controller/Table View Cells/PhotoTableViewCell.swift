@@ -50,17 +50,17 @@ class PhotoTableViewCell: UITableViewCell {
     
     // MARK: - Public API
     
-    func configure(title: String, url: URL?, didBuyPhoto: Bool) {
+    func configure(with presentable: PhotoPresentable) {
         // Configure Title Label
-        titleLabel.text = title
+        titleLabel.text = presentable.title
         
         // Show/Hide Buy Button
-        buyButton.isHidden = didBuyPhoto
+        buyButton.isHidden = presentable.didBuyPhoto
 
         // Animate Activity Indicator View
         activityIndicatorView.startAnimating()
         
-        guard let url = url else {
+        guard let url = presentable.url else {
             return
         }
         

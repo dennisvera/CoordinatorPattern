@@ -12,6 +12,8 @@ class PhotosViewController: UIViewController, Storyboardable {
     
     // MARK: - Properties
     
+    var viewModel: PhotosViewModel!
+    
     @IBOutlet var tableView: UITableView! {
         didSet {
             // Configure Table View
@@ -29,20 +31,8 @@ class PhotosViewController: UIViewController, Storyboardable {
     var didBuyPhoto: ((Photo) -> Void)?
     var didSelectPhoto: ((Photo) -> Void)?
     
-    // MARK: -
     
-    private lazy var dataSource: [Photo] = [
-        Photo(id: "pli", title: "Misery Ridge",                     url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/1.jpg"), price: 25.99),
-        Photo(id: "jyg", title: "Grand Teton Sunset",               url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/2.jpg"), price: 15.99),
-        Photo(id: "rdz", title: "Orange Icebergs",                  url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/3.jpg"), price: 27.99),
-        Photo(id: "aqs", title: "Grand Teton Sunrise",              url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/4.jpg"), price: 35.99),
-        Photo(id: "dfc", title: "Milky Tail",                       url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/5.jpg"), price: 18.99),
-        Photo(id: "gbh", title: "White Sands National Monument",    url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/6.jpg"), price: 24.99),
-        Photo(id: "hnj", title: "Stonehenge Storm",                 url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/7.jpg"), price: 25.99),
-        Photo(id: "jkr", title: "Mountain Sunrise",                 url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/8.jpg"), price: 30.99),
-        Photo(id: "pah", title: "Colours of Middle Earth",          url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/9.jpg"), price: 50.99)
-    ]
-
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -82,7 +72,7 @@ class PhotosViewController: UIViewController, Storyboardable {
             tableView.reloadRows(at: indexPaths, with: .none)
         }
     }
-
+    
     // MARK: - Actions
     
     @objc func signOut(_ sender: UIBarButtonItem) {
@@ -100,11 +90,11 @@ class PhotosViewController: UIViewController, Storyboardable {
 }
 
 extension PhotosViewController: UITableViewDataSource {
-
+    
     // MARK: - Table View Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return viewModel.numberOfPhotos
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,38 +102,36 @@ extension PhotosViewController: UITableViewDataSource {
             fatalError("Unable to Dequeue Photo Table View Cell")
         }
         
-        // Fetch Photo
-        let photo = dataSource[indexPath.row]
+        let viewModel = self.viewModel.photoViewModelForPhoto(at: indexPath.row)
         
         // Configure Cell
-        cell.configure(title: photo.title, url: photo.url, didBuyPhoto: UserDefaults.didBuy(photo))
+        cell.configure(with: viewModel)
         
         // Install Handler
         cell.didBuy = { [weak self] in
-            self?.didBuyPhoto?(photo)
+            self?.didBuyPhoto?(viewModel.photo)
         }
         
         return cell
     }
-
+    
 }
 
 extension PhotosViewController: UITableViewDelegate {
-
+    
     // MARK: - Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Fetch Photo
-        let photo = dataSource[indexPath.row]
+        let viewModel = self.viewModel.photoViewModelForPhoto(at: indexPath.row)
         
         // Invoke Handler
-        didSelectPhoto?(photo)
+        didSelectPhoto?(viewModel.photo)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
-
+    
 }

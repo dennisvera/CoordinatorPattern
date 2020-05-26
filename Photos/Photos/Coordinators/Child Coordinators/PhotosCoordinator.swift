@@ -60,6 +60,8 @@ class PhotosCoordinator: Coordinator {
         // Initialize Photos View Controller
         let photosViewController = PhotosViewController.instantiate()
         
+        photosViewController.viewModel = PhotosViewModel()
+        
         // Install Handlers
         photosViewController.didSignIn = { [weak self] in
             self?.showSignIn()
@@ -105,7 +107,7 @@ class PhotosCoordinator: Coordinator {
     private func showPhoto(_ photo: Photo) {
         // Initialize Photo View Controller
         let photoViewController = PhotoViewController.instantiate()
-        
+                
         // Configure Photo View Controller
         photoViewController.photo = photo
         
