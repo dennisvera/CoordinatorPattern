@@ -42,9 +42,8 @@ class TermsCoordinator: Coordinator {
     
     private func showTerms() {
         // Initialize Terms View Controller
-        // let termsViewController = TermsViewControllerStoryboard.instantiate()
         // let termsViewController = TermsViewControllerXIB(nibName: TermsViewControllerXIB.nibName, bundle: .main)
-        let termsViewController = TermsViewControllerCode()
+        let termsViewController = TermsViewControllerXIB(termsOfService: "These are the terms of service.")
         
         // Install Handlers
         termsViewController.didCancel = { [weak self] in

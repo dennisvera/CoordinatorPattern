@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TermsViewControllerXIB" customModule="Photos" customModuleProvider="target">
             <connections>
+                <outlet property="termsOfServiceLabel" destination="YK3-Cu-SZW" id="TVD-xR-VIR"/>
                 <outlet property="view" destination="80b-3E-ikg" id="2gy-Q2-O5K"/>
             </connections>
         </placeholder>
