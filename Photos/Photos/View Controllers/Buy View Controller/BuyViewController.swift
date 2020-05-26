@@ -39,7 +39,7 @@ class BuyViewController: UIViewController, Storyboardable {
     // MARK: -
     
     var didBuyPhoto: ((Photo) -> Void)?
-    
+
     // MARK: -
     
     var didShowTerms: (() -> Void)?
@@ -136,13 +136,17 @@ class BuyViewController: UIViewController, Storyboardable {
             }
         }
     }
-    
+
+    // MARK: -
     
     @IBAction func showTerms(_ sender: Any) {
         didShowTerms?()
     }
 
+    // MARK: -
+    
     @objc func cancel(_ sender: UIBarButtonItem) {
         didCancel?()
     }
+
 }

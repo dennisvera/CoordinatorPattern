@@ -23,13 +23,13 @@ class AppCoordinator: Coordinator {
     // MARK: - Properties
     
     private let navigationController = UINavigationController()
-    
+
     // MARK: - Public API
     
     var rootViewController: UIViewController {
         return navigationController
     }
-    
+
     // MARK: - Overrides
     
     override func start() {
@@ -54,7 +54,7 @@ class AppCoordinator: Coordinator {
         }
     }
     
-    // MARK: -
+    // MARK: - Helper Methods
     
     private func showPhotos() {
         // Initialize Photos View Controller
@@ -76,7 +76,7 @@ class AppCoordinator: Coordinator {
         // Push Photos View Controller Onto Navigation Stack
         navigationController.pushViewController(photosViewController, animated: true)
     }
-    
+
     // MARK: -
     
     private func showSignIn() {
@@ -117,7 +117,7 @@ class AppCoordinator: Coordinator {
         // Push Photo View Controller Onto Navigation Stack
         navigationController.pushViewController(photoViewController, animated: true)
     }
-    
+
     // MARK: -
     
     private func buyPhoto(_ photo: Photo, purchaseFlowType: PurchaseFlowType) {
@@ -134,5 +134,5 @@ class AppCoordinator: Coordinator {
         // Push Buy Coordinator
         pushCoordinator(buyCoordinator)
     }
-    
+
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TermsViewControllerXIB" customModule="Photos" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="80b-3E-ikg" id="2gy-Q2-O5K"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="80b-3E-ikg">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDu-OH-4nP">
+                    <rect key="frame" x="346" y="64" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="g3l-qo-VWm"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Terms of Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euz-xU-gfG">
+                    <rect key="frame" x="76" y="63.5" width="262" height="31.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-Cu-SZW">
+                    <rect key="frame" x="20" y="115" width="374" height="358.5"/>
+                    <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac dolor justo, ac tempus leo. Etiam pulvinar eros at lectus sollicitudin scelerisque. Aliquam erat volutpat. Suspendisse eu eros non elit blandit suscipit. Morbi scelerisque euismod tempus. Vestibulum elementum tincidunt tempor. Mauris sodales tristique adipiscing. Sed venenatis lorem quis eros hendrerit consequat. Sed a est leo. Donec sapien libero, rutrum eget luctus ac, accumsan vel lectus. Ut quis libero ante. Ut volutpat, massa ac aliquam molestie, neque est blandit diam, non adipiscing purus magna vitae massa. Vestibulum fermentum consectetur sem, non aliquet nisl varius porta. Nulla consectetur tellus vel nibh tincidunt nec tincidunt nunc pellentesque. Etiam vel arcu sit amet quam auctor tincidunt commodo eu leo. Aliquam in arcu nulla. Donec eget imperdiet dui. Praesent vitae odio leo. Morbi bibendum lobortis sapien sit amet posuere. Nullam blandit, sem et dapibus porttitor, dolor metus pharetra dui, sit amet rhoncus justo nibh at nibh.</string>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Wdz-9S-RkZ" firstAttribute="trailing" secondItem="YK3-Cu-SZW" secondAttribute="trailing" constant="20" id="Grs-Qz-X7Q"/>
+                <constraint firstItem="YK3-Cu-SZW" firstAttribute="leading" secondItem="Wdz-9S-RkZ" secondAttribute="leading" constant="20" id="Pzr-fe-jmX"/>
+                <constraint firstItem="Euz-xU-gfG" firstAttribute="centerY" secondItem="tDu-OH-4nP" secondAttribute="centerY" id="ciw-pG-o7A"/>
+                <constraint firstItem="tDu-OH-4nP" firstAttribute="top" secondItem="Wdz-9S-RkZ" secondAttribute="top" constant="20" id="dP5-vH-4MT"/>
+                <constraint firstItem="Wdz-9S-RkZ" firstAttribute="trailing" secondItem="tDu-OH-4nP" secondAttribute="trailing" constant="20" id="ief-Iu-HvP"/>
+                <constraint firstItem="tDu-OH-4nP" firstAttribute="leading" secondItem="Euz-xU-gfG" secondAttribute="trailing" constant="8" id="psr-h6-Xlc"/>
+                <constraint firstItem="YK3-Cu-SZW" firstAttribute="top" secondItem="Euz-xU-gfG" secondAttribute="bottom" constant="20" id="qRo-lu-xrn"/>
+                <constraint firstItem="Euz-xU-gfG" firstAttribute="centerX" secondItem="Wdz-9S-RkZ" secondAttribute="centerX" id="z0I-Ht-WyV"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Wdz-9S-RkZ"/>
+        </view>
+    </objects>
+</document>

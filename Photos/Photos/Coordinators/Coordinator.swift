@@ -14,11 +14,10 @@ class Coordinator: NSObject, UINavigationControllerDelegate {
     
     var didFinish: ((Coordinator) -> Void)?
     
-    
     // MARK: -
     
     var childCoordinators: [Coordinator] = []
-    
+
     // MARK: - Methods
     
     func start() {}
@@ -27,8 +26,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {}
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {}
-    
-    // MARK: - Helper Methods
+
+    // MARK: -
     
     func pushCoordinator(_ coordinator: Coordinator) {
         // Install Handler
@@ -49,4 +48,5 @@ class Coordinator: NSObject, UINavigationControllerDelegate {
             childCoordinators.remove(at: index)
         }
     }
+
 }

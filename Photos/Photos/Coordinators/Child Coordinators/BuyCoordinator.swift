@@ -149,9 +149,13 @@ class BuyCoordinator: Coordinator {
         navigationController.pushViewController(buyViewController, animated: true)
     }
     
+    // MARK: -
+    
     private func showTerms() {
+        // Initialize Terms Coordinator
         let termsCoordinator = TermsCoordinator(presentingViewController: navigationController)
         
+        // Push Terms Coordinator
         pushCoordinator(termsCoordinator)
     }
 

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		CC0339B022B4ABEC00C3DB17 /* UserDefaults+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0339AF22B4ABEC00C3DB17 /* UserDefaults+Photos.swift */; };
 		CC1318C022C4FE5400FE990D /* BuyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1318BF22C4FE5400FE990D /* BuyCoordinator.swift */; };
+		CC59BB5F22F83AB3007371B9 /* TermsViewControllerXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC59BB5E22F83AB3007371B9 /* TermsViewControllerXIB.xib */; };
+		CC59BB6122F854D1007371B9 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59BB6022F854D1007371B9 /* TermsViewController.swift */; };
+		CC59BB6422F85511007371B9 /* TermsViewControllerStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59BB6322F85511007371B9 /* TermsViewControllerStoryboard.swift */; };
+		CC59BB6722F85535007371B9 /* TermsViewControllerXIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC59BB6622F85535007371B9 /* TermsViewControllerXIB.swift */; };
 		CC8C882A22B3F2140033AB37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C882922B3F2140033AB37 /* AppDelegate.swift */; };
 		CC8C882C22B3F2140033AB37 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C882B22B3F2140033AB37 /* PhotosViewController.swift */; };
 		CC8C882F22B3F2140033AB37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC8C882D22B3F2140033AB37 /* Main.storyboard */; };
@@ -22,13 +26,17 @@
 		CC8C885222B3F8D50033AB37 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C885122B3F8D50033AB37 /* SignInViewController.swift */; };
 		CCBB0A3322C50C4500A3B89A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBB0A3222C50C4500A3B89A /* Coordinator.swift */; };
 		CCE17FB322B4BC9900C2DBDA /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */; };
-		CCF4BEEE22F2D6B20067C87E /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF4BEED22F2D6B20067C87E /* TermsViewController.swift */; };
-		E1E866C9247D849F003F7E03 /* TermsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E866C8247D849F003F7E03 /* TermsCoordinator.swift */; };
+		CCF4BEEE22F2D6B20067C87E /* TermsViewControllerCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF4BEED22F2D6B20067C87E /* TermsViewControllerCode.swift */; };
+		CCF4BEF022F2DF080067C87E /* TermsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF4BEEF22F2DF080067C87E /* TermsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CC0339AF22B4ABEC00C3DB17 /* UserDefaults+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Photos.swift"; sourceTree = "<group>"; };
 		CC1318BF22C4FE5400FE990D /* BuyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCoordinator.swift; sourceTree = "<group>"; };
+		CC59BB5E22F83AB3007371B9 /* TermsViewControllerXIB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewControllerXIB.xib; sourceTree = "<group>"; };
+		CC59BB6022F854D1007371B9 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		CC59BB6322F85511007371B9 /* TermsViewControllerStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewControllerStoryboard.swift; sourceTree = "<group>"; };
+		CC59BB6622F85535007371B9 /* TermsViewControllerXIB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewControllerXIB.swift; sourceTree = "<group>"; };
 		CC8C882622B3F2140033AB37 /* Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC8C882922B3F2140033AB37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC8C882B22B3F2140033AB37 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -44,8 +52,8 @@
 		CC8C885122B3F8D50033AB37 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CCBB0A3222C50C4500A3B89A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CCE17FB222B4BC9900C2DBDA /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
-		CCF4BEED22F2D6B20067C87E /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
-		E1E866C8247D849F003F7E03 /* TermsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TermsCoordinator.swift; path = "Photos/View Controllers/Terms View Controller/TermsCoordinator.swift"; sourceTree = SOURCE_ROOT; };
+		CCF4BEED22F2D6B20067C87E /* TermsViewControllerCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewControllerCode.swift; sourceTree = "<group>"; };
+		CCF4BEEF22F2DF080067C87E /* TermsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				CC1318BF22C4FE5400FE990D /* BuyCoordinator.swift */,
-				E1E866C8247D849F003F7E03 /* TermsCoordinator.swift */,
+				CCF4BEEF22F2DF080067C87E /* TermsCoordinator.swift */,
 			);
 			path = "Child Coordinators";
 			sourceTree = "<group>";
@@ -82,6 +90,31 @@
 				CC8C884522B3F33C0033AB37 /* AppCoordinator.swift */,
 			);
 			path = "Application Coordinator";
+			sourceTree = "<group>";
+		};
+		CC59BB6222F854F6007371B9 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				CC59BB6322F85511007371B9 /* TermsViewControllerStoryboard.swift */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		CC59BB6522F85521007371B9 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				CC59BB5E22F83AB3007371B9 /* TermsViewControllerXIB.xib */,
+				CC59BB6622F85535007371B9 /* TermsViewControllerXIB.swift */,
+			);
+			path = XIB;
+			sourceTree = "<group>";
+		};
+		CC59BB6822F85567007371B9 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				CCF4BEED22F2D6B20067C87E /* TermsViewControllerCode.swift */,
+			);
+			path = Code;
 			sourceTree = "<group>";
 		};
 		CC8C881D22B3F2140033AB37 = {
@@ -231,7 +264,10 @@
 		CCF4BEEC22F2D6980067C87E /* Terms View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CCF4BEED22F2D6B20067C87E /* TermsViewController.swift */,
+				CC59BB6022F854D1007371B9 /* TermsViewController.swift */,
+				CC59BB6222F854F6007371B9 /* Storyboard */,
+				CC59BB6522F85521007371B9 /* XIB */,
+				CC59BB6822F85567007371B9 /* Code */,
 			);
 			path = "Terms View Controller";
 			sourceTree = "<group>";
@@ -296,6 +332,7 @@
 			files = (
 				CC8C883422B3F2150033AB37 /* LaunchScreen.storyboard in Resources */,
 				CC8C883122B3F2150033AB37 /* Assets.xcassets in Resources */,
+				CC59BB5F22F83AB3007371B9 /* TermsViewControllerXIB.xib in Resources */,
 				CC8C882F22B3F2140033AB37 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,14 +347,17 @@
 				CC8C884F22B3F8320033AB37 /* Photo.swift in Sources */,
 				CCE17FB322B4BC9900C2DBDA /* BuyViewController.swift in Sources */,
 				CC0339B022B4ABEC00C3DB17 /* UserDefaults+Photos.swift in Sources */,
-				CCF4BEEE22F2D6B20067C87E /* TermsViewController.swift in Sources */,
+				CCF4BEEE22F2D6B20067C87E /* TermsViewControllerCode.swift in Sources */,
+				CC59BB6122F854D1007371B9 /* TermsViewController.swift in Sources */,
 				CC8C884922B3F4A10033AB37 /* PhotoTableViewCell.swift in Sources */,
 				CC8C884622B3F33C0033AB37 /* AppCoordinator.swift in Sources */,
-				E1E866C9247D849F003F7E03 /* TermsCoordinator.swift in Sources */,
+				CCF4BEF022F2DF080067C87E /* TermsCoordinator.swift in Sources */,
 				CC8C882C22B3F2140033AB37 /* PhotosViewController.swift in Sources */,
+				CC59BB6422F85511007371B9 /* TermsViewControllerStoryboard.swift in Sources */,
 				CC8C885222B3F8D50033AB37 /* SignInViewController.swift in Sources */,
 				CC8C884322B3F2F10033AB37 /* Storyboardable.swift in Sources */,
 				CCBB0A3322C50C4500A3B89A /* Coordinator.swift in Sources */,
+				CC59BB6722F85535007371B9 /* TermsViewControllerXIB.swift in Sources */,
 				CC8C882A22B3F2140033AB37 /* AppDelegate.swift in Sources */,
 				CC8C884C22B3F6010033AB37 /* PhotoViewController.swift in Sources */,
 				CC1318C022C4FE5400FE990D /* BuyCoordinator.swift in Sources */,
