@@ -2,15 +2,19 @@
 //  PhotoViewModel.swift
 //  Photos
 //
-//  Created by Dennis Vera on 5/26/20.
-//  Copyright © 2020 Code Foundry. All rights reserved.
+//  Created by Bart Jacobs on 28/08/2019.
+//  Copyright © 2019 Code Foundry. All rights reserved.
 //
 
 import Foundation
 
 struct PhotoViewModel {
     
+    // MARK: - Properties
+    
     let photo: Photo
+    
+    // MARK: - Public API
     
     var title: String {
         return photo.title
@@ -23,6 +27,7 @@ struct PhotoViewModel {
     var didBuyPhoto: Bool {
         return UserDefaults.didBuy(photo)
     }
+    
 }
 
 extension PhotoViewModel: PhotoPresentable {}

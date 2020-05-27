@@ -2,17 +2,22 @@
 //  ProfileCoordinator.swift
 //  Photos
 //
-//  Created by Dennis Vera on 5/26/20.
-//  Copyright © 2020 Code Foundry. All rights reserved.
+//  Created by Bart Jacobs on 16/08/2019.
+//  Copyright © 2019 Code Foundry. All rights reserved.
 //
 
 import UIKit
 
 class ProfileCoordinator: Coordinator {
     
+    // MARK: - Properties
+    
     var rootViewController: UIViewController {
         return profileViewController
     }
     
+    // MARK: -
+    
     private let profileViewController = ProfileViewController.instantiate()
+    
 }

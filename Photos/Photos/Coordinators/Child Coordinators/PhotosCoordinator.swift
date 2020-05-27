@@ -1,5 +1,5 @@
 //
-//  PhotosCoordinator.swift
+//  AppCoordinator.swift
 //  Photos
 //
 //  Created by Bart Jacobs on 14/06/2019.
@@ -57,22 +57,27 @@ class PhotosCoordinator: Coordinator {
     // MARK: - Helper Methods
     
     private func showPhotos() {
+        // Initialize Photos View Model
+        let viewModel = PhotosViewModel()
+        
+        // Install Handlers
+        viewModel.didSelectPhoto = { [weak self] (photo) in
+            self?.showPhoto(photo)
+        }
+        
+        viewModel.didBuyPhoto = { [weak self] (photo) in
+            self?.buyPhoto(photo, purchaseFlowType: .vertical)
+        }
+
         // Initialize Photos View Controller
         let photosViewController = PhotosViewController.instantiate()
         
-        photosViewController.viewModel = PhotosViewModel()
+        // Configure Photos View Controller
+        photosViewController.viewModel = viewModel
         
         // Install Handlers
         photosViewController.didSignIn = { [weak self] in
             self?.showSignIn()
-        }
-        
-        photosViewController.didSelectPhoto = { [weak self] (photo) in
-            self?.showPhoto(photo)
-        }
-        
-        photosViewController.didBuyPhoto = { [weak self] (photo) in
-            self?.buyPhoto(photo, purchaseFlowType: .vertical)
         }
         
         // Push Photos View Controller Onto Navigation Stack
@@ -107,7 +112,7 @@ class PhotosCoordinator: Coordinator {
     private func showPhoto(_ photo: Photo) {
         // Initialize Photo View Controller
         let photoViewController = PhotoViewController.instantiate()
-                
+        
         // Configure Photo View Controller
         photoViewController.photo = photo
         

@@ -11,9 +11,7 @@ import UIKit
 class PhotosViewController: UIViewController, Storyboardable {
     
     // MARK: - Properties
-    
-    var viewModel: PhotosViewModel!
-    
+
     @IBOutlet var tableView: UITableView! {
         didSet {
             // Configure Table View
@@ -21,17 +19,14 @@ class PhotosViewController: UIViewController, Storyboardable {
             tableView.dataSource = self
         }
     }
+
+    // MARK: -
     
+    var viewModel: PhotosViewModel!
+
     // MARK: -
     
     var didSignIn: (() -> Void)?
-    
-    // MARK: -
-    
-    var didBuyPhoto: ((Photo) -> Void)?
-    var didSelectPhoto: ((Photo) -> Void)?
-    
-    
     
     // MARK: - View Life Cycle
     
@@ -72,7 +67,7 @@ class PhotosViewController: UIViewController, Storyboardable {
             tableView.reloadRows(at: indexPaths, with: .none)
         }
     }
-    
+
     // MARK: - Actions
     
     @objc func signOut(_ sender: UIBarButtonItem) {
@@ -90,18 +85,19 @@ class PhotosViewController: UIViewController, Storyboardable {
 }
 
 extension PhotosViewController: UITableViewDataSource {
-    
+
     // MARK: - Table View Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfPhotos
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.reuseIdentifier, for: indexPath) as? PhotoTableViewCell else {
             fatalError("Unable to Dequeue Photo Table View Cell")
         }
         
+        // Create View Model
         let viewModel = self.viewModel.photoViewModelForPhoto(at: indexPath.row)
         
         // Configure Cell
@@ -109,29 +105,28 @@ extension PhotosViewController: UITableViewDataSource {
         
         // Install Handler
         cell.didBuy = { [weak self] in
-            self?.didBuyPhoto?(viewModel.photo)
+            // Notify View Model
+            self?.viewModel.buyPhoto(at: indexPath.row)
         }
         
         return cell
     }
-    
+
 }
 
 extension PhotosViewController: UITableViewDelegate {
-    
+
     // MARK: - Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let viewModel = self.viewModel.photoViewModelForPhoto(at: indexPath.row)
-        
-        // Invoke Handler
-        didSelectPhoto?(viewModel.photo)
+        // Notify View Model
+        viewModel.selectPhoto(at: indexPath.row)
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
-    
+
 }

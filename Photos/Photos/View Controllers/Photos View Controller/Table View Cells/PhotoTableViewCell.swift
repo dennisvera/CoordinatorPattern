@@ -56,7 +56,7 @@ class PhotoTableViewCell: UITableViewCell {
         
         // Show/Hide Buy Button
         buyButton.isHidden = presentable.didBuyPhoto
-
+        
         // Animate Activity Indicator View
         activityIndicatorView.startAnimating()
         
@@ -82,7 +82,7 @@ class PhotoTableViewCell: UITableViewCell {
         // Resume Data Task
         dataTask?.resume()
     }
-    
+
     // MARK: - Overrides
     
     override func prepareForReuse() {

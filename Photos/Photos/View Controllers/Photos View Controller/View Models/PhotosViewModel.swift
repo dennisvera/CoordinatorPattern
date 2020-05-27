@@ -2,8 +2,8 @@
 //  PhotosViewModel.swift
 //  Photos
 //
-//  Created by Dennis Vera on 5/26/20.
-//  Copyright © 2020 Code Foundry. All rights reserved.
+//  Created by Bart Jacobs on 28/08/2019.
+//  Copyright © 2019 Code Foundry. All rights reserved.
 //
 
 import Foundation
@@ -11,6 +11,11 @@ import Foundation
 class PhotosViewModel {
     
     // MARK: - Properties
+    
+    var didBuyPhoto: ((Photo) -> Void)?
+    var didSelectPhoto: ((Photo) -> Void)?
+
+    // MARK: -
     
     private lazy var dataSource: [Photo] = [
         Photo(id: "pli", title: "Misery Ridge",                     url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/1.jpg"), price: 25.99),
@@ -23,6 +28,8 @@ class PhotosViewModel {
         Photo(id: "jkr", title: "Mountain Sunrise",                 url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/8.jpg"), price: 30.99),
         Photo(id: "pah", title: "Colours of Middle Earth",          url: URL(string: "https://cdn.cocoacasts.com/7ba5c3e7df669703cd7f0f0d4cefa5e5947126a8/9.jpg"), price: 50.99)
     ]
+
+    // MARK: - Public API
     
     var numberOfPhotos: Int {
         return dataSource.count
@@ -31,5 +38,15 @@ class PhotosViewModel {
     func photoViewModelForPhoto(at index: Int) -> PhotoViewModel {
         return PhotoViewModel(photo: dataSource[index])
     }
+
+    // MARK: -
     
+    func buyPhoto(at index: Int) {
+        didBuyPhoto?(dataSource[index])
+    }
+
+    func selectPhoto(at index: Int) {
+        didSelectPhoto?(dataSource[index])
+    }
+
 }
